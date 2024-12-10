@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="{% static 'css/add_task.css' %}">
+</head>
+<body>
+    {%include 'todo/navbar.html'%}
+    {%include 'todo/message.html'%}
+    <div class="add-task-container">
+        <h1>Add Your Task</h1>
+        <form class="add-task-form" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">Add Task</button>
+            <a href="{% url 'task_list' %}" >Task List</a>
+        </form>
+    </div>
+    
+</body>
+</html>

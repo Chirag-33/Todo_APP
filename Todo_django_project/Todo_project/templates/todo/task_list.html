@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" href="{% static 'css\task_list.css' %}">
+</head>
+<body>
+    {% include 'todo/navbar.html' %}
+    {%include 'todo/message.html'%}
+    <table class="task-list-container">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.Title }}</td>
+                <td>
+                    <form action="{% url 'delete_task' task.id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="action-button">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No tasks are available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

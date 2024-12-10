@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+</head>
+<body>
+    {% include 'todo\navbar.html' %}
+    {%include 'todo/message.html'%}
+    <div class="register_body">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }} 
+            <input type="submit" value="Register">
+        </form>
+        <a href="{% url 'login' %}">Already have an account? Login</a>
+    </div>
+    
+</body>
+</html>
